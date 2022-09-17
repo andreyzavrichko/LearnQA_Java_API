@@ -1,7 +1,7 @@
 import io.restassured.RestAssured;
 
 import io.restassured.http.Header;
-import io.restassured.http.Headers;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
@@ -9,19 +9,14 @@ import org.junit.jupiter.api.Test;
 
 class lessonTwo {
     @Test
-    void testExample() {
-
-
-        Response response = RestAssured
+    void ex5Test() {
+        JsonPath response = RestAssured
                .given()
                .get("https://playground.learnqa.ru/api/get_json_homework")
-                .andReturn();
+                .jsonPath();
 
-//print(json_text['messages'][0])
-       //String answer = response.prettyPrint();
-
-        response.print();
-
+       String answer = response.get("messages.message[1]");
+       System.out.println(answer);
     }
 
 

@@ -16,7 +16,7 @@ class lessonThree {
     }
 
     @Test
-    void ex11Test(){
+    void ex11Test() {
         Response response = RestAssured
                 .given()
                 .log().all()
@@ -25,6 +25,21 @@ class lessonThree {
                 .andReturn();
         assertEquals("hw_value", response.getCookie("HomeWork"));
         System.out.println(response.getCookies());
+    }
+
+    @Test
+    void ex12Test() {
+        Response response = RestAssured
+                .given()
+                .log().all()
+                .when()
+                .get("https://playground.learnqa.ru/api/homework_header")
+                .andReturn();
+
+        assertEquals("Apache", response.getHeader("server"));
+        assertEquals("15", response.getHeader("content-length"));
+        assertEquals("Some secret value", response.getHeader("x-secret-homework-header"));
+        System.out.println(response.getHeaders());
     }
 }
 

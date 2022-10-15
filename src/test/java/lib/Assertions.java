@@ -7,10 +7,10 @@ import static org.hamcrest.core.IsNot.not;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Assertions {
-    public static void asserJsonByName(Response Response, String name, int expectedValue) {
+    public static void assertJsonByName(Response Response, String name, String expectedValue) {
         Response.then().assertThat().body("$", hasKey(name));
 
-        int value = Response.jsonPath().getInt(name);
+        String value = Response.jsonPath().getString(name);
         assertEquals(expectedValue, value, "JSON value in not equal to expected value");
     }
 
@@ -45,6 +45,8 @@ public class Assertions {
             Assertions.assertJsonHasNotField(response, unexpectedFieldName);
         }
     }
+
+
 
 
 }

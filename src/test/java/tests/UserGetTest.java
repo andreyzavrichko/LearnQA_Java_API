@@ -1,6 +1,9 @@
 package tests;
 
 import io.qameta.allure.Epic;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -20,6 +23,8 @@ class UserGetTest extends BaseTestCase {
     @Test
     @Epic("Получение данных")
     @DisplayName("Получение данных неавторизованным пользователем")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("example.com")
     void testGetUserDataNotAuth() {
         Response responseUserData = RestAssured
                 .get("https://playground.learnqa.ru/api/user/2")
@@ -33,6 +38,8 @@ class UserGetTest extends BaseTestCase {
     @Test
     @Epic("Получение данных")
     @DisplayName("Получение данных другого пользователя авторизованным пользователем")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("example.com")
     void testGetUserDataAuthAsSomeUser() {
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");

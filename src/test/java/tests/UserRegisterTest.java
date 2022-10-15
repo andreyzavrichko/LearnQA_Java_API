@@ -1,6 +1,9 @@
 package tests;
 
 import io.qameta.allure.Epic;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.TmsLink;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -21,6 +24,8 @@ class UserRegisterTest extends BaseTestCase {
     @Test
     @Epic("Регистрация")
     @DisplayName("Создание пользователя с некорректным email(отсутствует @)")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("example.com")
     void testCreateUserWithIncorrectEmail() {
         String email = "example.test.com";
         Map<String, String> userData = new HashMap<>();
@@ -40,6 +45,8 @@ class UserRegisterTest extends BaseTestCase {
     @Epic("Регистрация")
     @ValueSource(strings = {"username", "email", "password", "firstName", "lastName"})
     @DisplayName("Создание пользователя без указания одного из полей")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("example.com")
     void testCreateUserWithoutOneOfParameters(String condition) {
         Map<String, String> userData = new HashMap<>();
         userData = DataGenerator.getRegistrationData(userData);
@@ -63,6 +70,8 @@ class UserRegisterTest extends BaseTestCase {
     @Test
     @Epic("Регистрация")
     @DisplayName("Создание пользователя с очень коротким именем в один символ")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("example.com")
     void testCreateUserWithOneSymbolName() {
         String username = "A";
         Map<String, String> userData = new HashMap<>();
@@ -80,6 +89,8 @@ class UserRegisterTest extends BaseTestCase {
     @Test
     @Epic("Регистрация")
     @DisplayName("Создание пользователя с очень длинным именем - длиннее 250 символов")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("example.com")
     void testCreateUserWithVeryLongName() {
         String username = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
         Map<String, String> userData = new HashMap<>();

@@ -1,6 +1,9 @@
 package tests;
 
 import io.qameta.allure.Epic;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.TmsLink;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import lib.Assertions;
@@ -20,6 +23,8 @@ class UserEditTest extends BaseTestCase {
     @Test
     @Epic("Редактирование пользователя")
     @DisplayName("Попытаемся изменить данные пользователя, будучи неавторизованными")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("example.com")
     void testEditWithoutAuth() {
         String newName = "new name";
         Map<String, String> editData = new HashMap<>();
@@ -36,6 +41,8 @@ class UserEditTest extends BaseTestCase {
     @Test
     @Epic("Редактирование пользователя")
     @DisplayName("Попытаемся изменить данные пользователя, будучи авторизованным другим пользователем")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("example.com")
     void testEditWithAnotherUser() {
         Map<String, String> userData = DataGenerator.getRegistrationData();
         generateUserRequest(userData);
@@ -62,6 +69,8 @@ class UserEditTest extends BaseTestCase {
     @Test
     @Epic("Редактирование пользователя")
     @DisplayName("Попытаемся изменить email пользователя, будучи авторизованными тем же пользователем, на новый email без символа @")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("example.com")
     void testEditWithWrongEmail() {
         Map<String, String> userData = DataGenerator.getRegistrationData();
         JsonPath responseCreateAuth = generateUserRequest(userData);
@@ -89,6 +98,8 @@ class UserEditTest extends BaseTestCase {
     @Test
     @Epic("Редактирование пользователя")
     @DisplayName("Попытаемся изменить firstName пользователя, будучи авторизованными тем же пользователем, на очень короткое значение в один символ")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("example.com")
     void testEditFirstNameTooShort() {
         Map<String, String> userData = DataGenerator.getRegistrationData();
         JsonPath responseCreateAuth = generateUserRequest(userData);
